@@ -1,0 +1,114 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark; */
+  /* color: rgba(255, 255, 255, 0.87); */
+  /* background-color: #242424; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark{
+  --main-bg-color: rgb(40, 40, 40);
+  --main-fore-color: #ffffff;
+}
+
+html{
+  --main-bg-color:white;
+  --main-fore-color:rgb(40,40,40);
+
+  background-color: var(--main-bg-color);
+  color:var(--main-fore-color);
+}
+
+
+
+body {
+  margin: 0;
+}
+
+
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Flexbox Utilities */
+.flex-row-all-start{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flex-row-all-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row-justify-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-row-align-center{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-row-space-bettween{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.flex-column-all-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column-justify-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-row{
+  display: row;
+  flex-direction: row;
+}
+
+.flex-column{
+  display: column;
+  flex-direction: column;
+}
+
+.flex-nowrap{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+*{
+  box-sizing: border-box;
+}
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+} */

@@ -1,0 +1,44 @@
+{
+  "name": "flow_im",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": " vite build && electron-builder",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@fluentui/web-components": "^2.6.1",
+    "@microsoft/fast-element": "^2.2.0",
+    "@vueuse/components": "^13.0.0",
+    "@vueuse/core": "^13.0.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.8.4",
+    "element-plus": "^2.9.7",
+    "lodash-es": "^4.17.21",
+    "lowdb": "^7.0.1",
+    "pinia": "^3.0.1",
+    "vue": "^3.4.21",
+    "vue-axios": "^3.5.2",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.12",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "electron": "^30.0.1",
+    "electron-builder": "^24.13.3",
+    "electron-icon-builder": "^2.0.1",
+    "sass-embedded": "^1.86.1",
+    "typescript": "^5.2.2",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.4.1",
+    "vite": "^5.1.6",
+    "vite-plugin-electron": "^0.28.6",
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vue-tsc": "^2.0.26"
+  },
+  "main": "dist-electron/main.js",
+  "build-icon": "electron-icon-builder --input=./public/favicon.png --output=public --flatten"
+}
