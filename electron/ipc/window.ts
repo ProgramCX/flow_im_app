@@ -1,8 +1,7 @@
 import { BrowserWindow, ipcMain } from "electron";
 
 export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
-
-    //改变窗口大小
+  //改变窗口大小
   ipcMain.on("resize-window", (_event, width: number, height: number) => {
     if (win) {
       win.setSize(width, height);
@@ -98,7 +97,6 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-
   //设置窗口图标
   ipcMain.on("set-window-icon", (_event, iconPath: string) => {
     if (win) {
@@ -107,12 +105,14 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
   });
 
   //设置窗口是否在所有工作区可见
-  ipcMain.on("set-window-visible-on-all-workspaces", (_event, visible: boolean) => {
-    if (win) {
-      win.setVisibleOnAllWorkspaces(visible);
+  ipcMain.on(
+    "set-window-visible-on-all-workspaces",
+    (_event, visible: boolean) => {
+      if (win) {
+        win.setVisibleOnAllWorkspaces(visible);
+      }
     }
-  });
-
+  );
 
   //设置窗口大小
   ipcMain.on("set-window-size", (_event, width: number, height: number) => {
@@ -142,7 +142,7 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-    //设置窗口最小化
+  //设置窗口最小化
   ipcMain.on("minimize-window", () => {
     if (win) {
       win.minimize();
@@ -217,7 +217,7 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-    //获取窗口是否可见
+  //获取窗口是否可见
   ipcMain.on("is-window-visible", (_event) => {
     if (win) {
       const visible = win.isVisible();
@@ -225,7 +225,7 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-    //获取窗口是否最大化
+  //获取窗口是否最大化
   ipcMain.on("is-window-maximized", (_event) => {
     if (win) {
       const maximized = win.isMaximized();
@@ -241,7 +241,6 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-
   //获取窗口是否全屏
   ipcMain.on("is-window-full-screen", (_event) => {
     if (win) {
@@ -249,7 +248,6 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
       _event.reply("is-window-full-screen-reply", fullScreen);
     }
   });
-
 
   //获取窗口是否可以改变大小
   ipcMain.on("is-window-resizable", (_event) => {
@@ -263,10 +261,12 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
   ipcMain.on("is-window-visible-on-all-workspaces", (_event) => {
     if (win) {
       const visibleOnAllWorkspaces = win.isVisibleOnAllWorkspaces();
-      _event.reply("is-window-visible-on-all-workspaces-reply", visibleOnAllWorkspaces);
+      _event.reply(
+        "is-window-visible-on-all-workspaces-reply",
+        visibleOnAllWorkspaces
+      );
     }
   });
-
 
   //获取窗口是否置顶
   ipcMain.on("is-window-always-on-top", (_event) => {
@@ -284,8 +284,7 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
     }
   });
 
-
-    //获取窗口是否可最小化
+  //获取窗口是否可最小化
   ipcMain.on("is-window-minimizable", (_event) => {
     if (win) {
       const minimizable = win.isMinimizable();

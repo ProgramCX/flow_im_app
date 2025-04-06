@@ -37,8 +37,8 @@
         <!-- 注册表单 -->
         <div v-else class="register-form">
             <div class="input-field flex-column-justify-center">
-                <FluentInput label="邮箱" placeholder="请输入邮箱地址" class="form-input"
-                    v-model="registerData.email"></FluentInput>
+                <FluentInput label="邮箱" placeholder="请输入邮箱地址" class="form-input" v-model="registerData.email">
+                </FluentInput>
                 <FluentInput label="密码" type="password" placeholder="请输入密码" class="form-input"
                     v-model="registerData.password"></FluentInput>
                 <FluentInput label="再次输入密码" type="password" placeholder="请再次输入密码" class="form-input"
@@ -67,7 +67,7 @@ import { toggleDark, isDark } from '../util/theme';
 
 import FluentInput from '../components/fluent-ui/FluentInput.vue';
 import FluentCheckBox from '../components/fluent-ui/FluentCheckBox.vue';
-import  Window  from '../electron/window';
+import Window from '../electron/window';
 //状态
 
 interface LoginData {
@@ -228,7 +228,7 @@ const login = () => {
         return;
     }
     console.log('loginData', loginData.value);
-    Window.createNewWindow('/home', 400,400,true);
+    Window.createNewWindow('/home', 400, 400, true);
 
 }
 
@@ -266,14 +266,14 @@ onMounted(() => {
     if (body) {
         body.style.overflow = 'hidden';
     }
-    
+
 })
 </script>
 
 <style lang="scss" scoped>
 .login-view {
-    width: 300px; 
-    height: 400px; 
+    width: 300px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;

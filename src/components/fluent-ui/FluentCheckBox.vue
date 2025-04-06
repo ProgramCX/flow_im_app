@@ -4,11 +4,7 @@ description: 封装了的fluent-ui的CheckBox组件，为了能够使用v-model�
 date: 2025-04-06
 -->
 <template>
-  <fluent-checkbox
-    :checked="props.modelValue"
-    :disabled="props.disabled"
-    @change="onInput"
-  >
+  <fluent-checkbox :checked="props.modelValue" :disabled="props.disabled" @change="onInput">
     <slot></slot>
   </fluent-checkbox>
 </template>
@@ -38,7 +34,7 @@ const onInput = (event: Event) => {
 };
 
 // 禁用 console.warn 和 console.error
-console.warn = () => {}; // 禁用警告
-console.error = () => {}; // 禁用错误
+console.warn = () => { }; // 禁用警告
+console.error = () => { }; // 禁用错误
 
 </script>

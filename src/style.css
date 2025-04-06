@@ -13,17 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.dark{
+html.dark {
   --main-bg-color: rgb(40, 40, 40);
   --main-fore-color: #ffffff;
 }
 
-html{
-  --main-bg-color:white;
-  --main-fore-color:rgb(40,40,40);
+html {
+  --main-bg-color: white;
+  --main-fore-color: rgb(40, 40, 40);
 
   background-color: var(--main-bg-color);
-  color:var(--main-fore-color);
+  color: var(--main-fore-color);
 }
 
 
@@ -40,72 +40,75 @@ body {
 }
 
 /* Flexbox Utilities */
-.flex-row-all-start{
+.flex-row-all-start {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.flex-row-all-center{
+
+.flex-row-all-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.flex-row-justify-center{
+.flex-row-justify-center {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.flex-row-align-center{
+.flex-row-align-center {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.flex-row-space-bettween{
+.flex-row-space-bettween {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.flex-column-all-center{
+
+.flex-column-all-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.flex-column-justify-center{
+.flex-column-justify-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.flex-row{
+.flex-row {
   display: row;
   flex-direction: row;
 }
 
-.flex-column{
+.flex-column {
   display: column;
   flex-direction: column;
 }
 
-.flex-nowrap{
+.flex-nowrap {
   display: flex;
   flex-wrap: nowrap;
 }
 
-.flex-wrap{
+.flex-wrap {
   display: flex;
   flex-wrap: wrap;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

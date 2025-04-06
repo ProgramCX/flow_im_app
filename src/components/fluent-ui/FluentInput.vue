@@ -5,14 +5,8 @@ date: 2024-04-01
 -->
 <template>
   <div>
-    <fluent-text-field
-      :value="props.modelValue"
-      @input="onInput($event)"
-      @change="$emit('change', $event)"
-      :placeholder="props.placeholder"
-      :label="props.label"
-      style="width: 100%;"
-    />
+    <fluent-text-field :value="props.modelValue" @input="onInput($event)" @change="$emit('change', $event)"
+      :placeholder="props.placeholder" :label="props.label" style="width: 100%;" />
   </div>
 </template>
 
@@ -43,6 +37,6 @@ const onInput = (event: Event) => {
 };
 
 // 禁用 console.warn
-console.warn = () => {}; // 禁用警告
+console.warn = () => { }; // 禁用警告
 
 </script>

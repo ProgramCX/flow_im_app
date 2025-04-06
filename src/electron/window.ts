@@ -1,20 +1,20 @@
 export default class Window {
-    /**
-     * 
-     * @param route 需要加载的URL路径
-     * @param width 窗口宽度
-     * @param height 窗口高度
-     * @param frame 是否显示窗口边框
-     * @param hideMenuBar 是否隐藏菜单栏
-     * @param resizable 是否可改变大小
-     * @param movable 是否可移动
-     * @param minimizable 是否可最小化
-     * @param maximizable 是否可最大化
-     * @param fullScreen 是否全屏
-     * @param alwaysOnTop 是否总在最上层
-     * @param inTaskbar 是否在任务栏中显示
-     * @param opacity 是否透明
-     */
+  /**
+   *
+   * @param route 需要加载的URL路径
+   * @param width 窗口宽度
+   * @param height 窗口高度
+   * @param frame 是否显示窗口边框
+   * @param hideMenuBar 是否隐藏菜单栏
+   * @param resizable 是否可改变大小
+   * @param movable 是否可移动
+   * @param minimizable 是否可最小化
+   * @param maximizable 是否可最大化
+   * @param fullScreen 是否全屏
+   * @param alwaysOnTop 是否总在最上层
+   * @param inTaskbar 是否在任务栏中显示
+   * @param opacity 是否透明
+   */
   static createNewWindow(
     route: string,
     width: number,
