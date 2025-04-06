@@ -44,9 +44,6 @@ import { provideFluentDesignSystem, fluentCard, fluentButton, fluentTextField, f
 provideFluentDesignSystem().register(fluentCard(), fluentButton(),fluentTextField(),fluentCheckbox());
 
 app.mount('#app').$nextTick(() => {
-  // Use contextBridge
-  window.ipcRenderer.on('main-process-message', (_event, message) => {
-    console.log(message)
-  })
+  
 })
 

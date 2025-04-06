@@ -1,11 +1,10 @@
-import { app, BrowserWindow, Menu, ipcMain } from 'electron'
-import { createRequire } from 'node:module'
-import { fileURLToPath } from 'node:url'
-import path from 'node:path'
+import { app, BrowserWindow, ipcMain } from "electron";
+import { fileURLToPath } from "node:url";
+import setupIpcHandlers from "./ipc";
 
-const require = createRequire(import.meta.url)
-require;
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import path from "node:path";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // The built directory structure
 //
@@ -16,76 +15,163 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // │ │ ├── main.js
 // │ │ └── preload.mjs
 // │
-process.env.APP_ROOT = path.join(__dirname, '..')
+process.env.APP_ROOT = path.join(__dirname, "..");
 
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
-export const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
-export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron')
-export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
+export const VITE_DEV_SERVER_URL = process.env["VITE_DEV_SERVER_URL"];
+export const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
+export const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 
-process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 'public') : RENDERER_DIST
+process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
+  ? path.join(process.env.APP_ROOT, "public")
+  : RENDERER_DIST;
 
-let win: BrowserWindow | null
+let wins: Array<BrowserWindow> = []; // Store all windows
 
-function createWindow() {
-  Menu.setApplicationMenu(null) ; // Hide menu bar
-  win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'icons/icon.ico'),
+/**
+ *
+ * @param route 需要加载的URL路径
+ * @param width 设置窗口宽度
+ * @param height 设置窗口高度
+ * @param frame 是否显示窗口边框
+ */
+function createNewWindow(
+  route: string,
+  width: number,
+  height: number,
+  frame: boolean = true,
+  hideMenuBar: boolean = true,
+  resizable: boolean = true,
+  movable: boolean = true,
+  minimizable: boolean = true,
+  maximizable: boolean = true,
+  fullScreen: boolean = false,
+  alwaysOnTop: boolean = false,
+  inTaskbar: boolean = true,
+  opacity: number = 1
+) {
+  const newWin = new BrowserWindow({
+    icon: path.join(process.env.VITE_PUBLIC, "icons/icon.ico"),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.mjs'),
+      preload: path.join(__dirname, "preload.mjs"),
+      webSecurity: false,
     },
-    frame: true,
-  })
+    frame: frame,
+    width: width,
+    height: height,
+    show: false,
+    autoHideMenuBar: hideMenuBar,
+    resizable: resizable,
+    movable: movable,
+    minimizable: minimizable,
+    maximizable: maximizable,
+    fullscreen: fullScreen,
+    alwaysOnTop: alwaysOnTop,
+    skipTaskbar: !inTaskbar,
+    opacity: opacity,
+  });
 
-  // Test active push message to Renderer-process.
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString())
-  })
+  const finalRoute = route.startsWith("/") ? route : "/" + route;
 
+  //加载html文件
   if (VITE_DEV_SERVER_URL) {
-    win.loadURL(VITE_DEV_SERVER_URL)
-    win.webContents.openDevTools()
+    const fullUrl = `${VITE_DEV_SERVER_URL}#${finalRoute}`;
+    newWin.loadURL(fullUrl);
+    newWin.webContents.openDevTools();
   } else {
-    // win.loadFile('dist/index.html')
-    win.loadFile(path.join(RENDERER_DIST, 'index.html'))
+    const indexPath = path.join(RENDERER_DIST, "index.html");
+    newWin.loadFile(indexPath, { hash: finalRoute });
   }
 
-  ipcMain.on('resize-window', (event, width:number, height:number) => {
-    if (win) {
-      win.setSize(width, height)
-    }
+  // 等待加载完后再展示窗口
+  newWin.webContents.on("did-finish-load", () => {
+    newWin.show();
+    newWin.webContents.send(
+      "main-process-message",
+      new Date().toLocaleString()
+    );
   });
 
-  ipcMain.on('set-window-frame-visible', (event, isFrameVisible:boolean) => {
-    if (win) {
-      win.setMenuBarVisibility(isFrameVisible)
-      win.setResizable(isFrameVisible)
-    }
-  });
-  ipcMain.on('set-window-title', (event, title:string) => {
-    if (win) {
-      win.setTitle(title)
-    }
+  newWin.on("closed", () => {
+    const index = wins.indexOf(newWin);
+    //将销毁的窗口从数组中删除
+    if (index !== -1) wins.splice(index, 1);
   });
 
+  //设置IPC通信
+  setupIpcHandlers(newWin);
+
+  wins.push(newWin);
 }
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-    win = null
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+    wins.forEach((win) => {
+      win.destroy();
+      win = null;
+    });
+    wins = [];
   }
-})
+});
 
-app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
+    createNewWindow("/", 300, 500, true);
   }
-})
+});
 
-app.whenReady().then(createWindow)
+//打开应用程序时创建初始窗口
+app.whenReady().then(() => {
+  createNewWindow(
+    "/",
+    300,
+    500,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    1
+  );
+});
+
+ipcMain.on(
+  "create-new-window",
+  (
+    _event,
+    route: string,
+    width: number,
+    height: number,
+    frame: boolean = true,
+    hideMenuBar: boolean = true,
+    resizable: boolean = true,
+    movable: boolean = true,
+    minimizable: boolean = true,
+    maximizable: boolean = true,
+    fullScreen: boolean = false,
+    alwaysOnTop: boolean = false,
+    inTaskbar: boolean = true,
+    opacity: number = 1
+  ) => {
+    createNewWindow(
+      route,
+      width,
+      height,
+      frame,
+      hideMenuBar,
+      resizable,
+      movable,
+      minimizable,
+      maximizable,
+      fullScreen,
+      alwaysOnTop,
+      inTaskbar,
+      opacity
+    );
+  }
+);

@@ -28,7 +28,6 @@
                 <el-text style="color: red;">{{ messageLogin }}</el-text>
             </div>
             <div class="tool">
-                <!--有问题，无法实现双向绑定-->
                 <FluentCheckBox class="remember-me" v-model="loginData.isRemeberMe">记住我</FluentCheckBox>
                 <!-- <fluent-checkbox class="remember-me" @input="handleLoginRememberMeInput">记住我</fluent-checkbox> -->
                 <el-link class="register" @click="isLogin = !isLogin">注册</el-link>
@@ -68,6 +67,7 @@ import { toggleDark, isDark } from '../util/theme';
 
 import FluentInput from '../components/fluent-ui/FluentInput.vue';
 import FluentCheckBox from '../components/fluent-ui/FluentCheckBox.vue';
+import  Window  from '../electron/window';
 //状态
 
 interface LoginData {
@@ -228,6 +228,7 @@ const login = () => {
         return;
     }
     console.log('loginData', loginData.value);
+    Window.createNewWindow('/home', 400,400,true);
 
 }
 
@@ -246,28 +247,26 @@ watch(isDark, (newValue) => {
 })
 watch(isLogin, (newValue) => {
     if (newValue) {
-        window.electron.setWindowFrameVisible(true);
-        window.electron.setWindowTitle('登录');
-        window.electron.resizeWindow(350, 500);
+        // window.electron.setWindowFrameVisible(true);
+        Window.setWindowTitle('登录');
+        Window.setWindowSize(350, 500);
     } else {
-        window.electron.setWindowFrameVisible(false);
         window.electron.setWindowTitle('注册');
         window.electron.resizeWindow(350, 580);
     }
-    window.electron.setWindowFrameVisible(false);
 }, {
     immediate: true,
     deep: true
 })
 
 onMounted(() => {
-    window.electron.setWindowFrameVisible(false);
     window.electron.setWindowTitle('登录');
     //防止页面滚动
     const body = document.querySelector('body');
     if (body) {
         body.style.overflow = 'hidden';
     }
+    
 })
 </script>
 
