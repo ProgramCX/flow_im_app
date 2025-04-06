@@ -59,7 +59,7 @@ npm run build
 ```
 
 **注意**: 
-由于打包需要下载electron的安装包，在中国大陆地区可能无法下载，可以自行到[electron release 页面](https://github.com/electron/electron/releases)下载和控制台打印输出链接信息中对应版本的安装包，放到项目根目录下的`electron`文件夹中。Windows 用户建议放在 %LOCALAPPDATA%/electron/Cache 目录下，并且解压到该目录下。
+由于打包需要下载electron的安装包，在中国大陆地区可能无法下载，可以自行到[electron release 页面](https://github.com/electron/electron/releases)下载和控制台打印输出链接信息中对应版本的安装包，放到项目根目录下的`electron`文件夹中。Windows 用户建议放在 `%LOCALAPPDATA%/electron/Cache` 目录下，并且解压到该目录下。
 
 6. 打包完成后，安装包会在 `release` 目录下生成。
 
