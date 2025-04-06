@@ -19,16 +19,18 @@
         <!-- 登录表单 -->
         <div v-if="isLogin" class="login-form flex-column-all-center">
             <div class="input-field flex-column-justify-center">
-                <fluent-text-field label="FM号" placeholder="请输入FM号" class="form-input"
-                    @input="handleLoginUserNameInput"></fluent-text-field>
-                <fluent-text-field label="密码" type="password" placeholder="请输入密码" class="form-input"
-                    @input="handleLoginPasswordInput" />
+                <FluentInput label="用户名" placeholder="请输入用户名" class="form-input" v-model="loginData.number">
+                </FluentInput>
+                <FluentInput label="密码" type="password" placeholder="请输入密码" class="form-input"
+                    v-model="loginData.password"></FluentInput>
             </div>
             <div class="tip" v-if="messageLoginTipShow">
                 <el-text style="color: red;">{{ messageLogin }}</el-text>
             </div>
             <div class="tool">
-                <fluent-checkbox class="remember-me" @input="handleLoginRememberMeInput">记住我</fluent-checkbox>
+                <!--有问题，无法实现双向绑定-->
+                <FluentCheckBox class="remember-me" v-model="loginData.isRemeberMe">记住我</FluentCheckBox>
+                <!-- <fluent-checkbox class="remember-me" @input="handleLoginRememberMeInput">记住我</fluent-checkbox> -->
                 <el-link class="register" @click="isLogin = !isLogin">注册</el-link>
             </div>
             <fluent-button class="login form-input" @click="login" appearance="accent">登录</fluent-button>
@@ -36,15 +38,15 @@
         <!-- 注册表单 -->
         <div v-else class="register-form">
             <div class="input-field flex-column-justify-center">
-                <fluent-text-field label="邮箱" placeholder="请输入邮箱地址" class="form-input"
-                    @input="handleRegisterEmailInput"></fluent-text-field>
-                <fluent-text-field label="密码" type="password" placeholder="请输入密码" class="form-input"
-                    @input="handleRegisterPasswordInput" />
-                <fluent-text-field label="再次输入密码" type="password" placeholder="请再次输入密码" class="form-input"
-                    @input="handleRegisterConfirmPasswordInput" />
+                <FluentInput label="邮箱" placeholder="请输入邮箱地址" class="form-input"
+                    v-model="registerData.email"></FluentInput>
+                <FluentInput label="密码" type="password" placeholder="请输入密码" class="form-input"
+                    v-model="registerData.password"></FluentInput>
+                <FluentInput label="再次输入密码" type="password" placeholder="请再次输入密码" class="form-input"
+                    v-model="registerData.confirmPassword"></FluentInput>
                 <div class="flex-row-space-between validate-code">
-                    <fluent-text-field label="验证码" placeholder="请输入验证码" class="form-input"
-                        @input="handleRegisterValidateCodeInput"></fluent-text-field>
+                    <FluentInput label="验证码" placeholder="请输入验证码" class="form-input"
+                        v-model="registerData.validateCode"></FluentInput>
                     <fluent-button class="validate-code-btn" appearance="accent" @click="getVerificationCode"
                         :disabled="verificating">{{ verificating ? `${timeLeft} 秒后重试` : '获取验证码' }}</fluent-button>
                 </div>
@@ -63,10 +65,13 @@
 import { watch } from 'vue';
 import { onMounted, ref } from 'vue';
 import { toggleDark, isDark } from '../util/theme';
+
+import FluentInput from '../components/fluent-ui/FluentInput.vue';
+import FluentCheckBox from '../components/fluent-ui/FluentCheckBox.vue';
 //状态
 
 interface LoginData {
-    number: number;
+    number: string;
     password: string;
     isRemeberMe: boolean;
 }
@@ -90,7 +95,7 @@ const timeLeft = ref(5);
 const timer = ref<NodeJS.Timeout | null>(null);
 
 const loginData = ref<LoginData>({
-    number: 0,
+    number: '',
     password: '',
     isRemeberMe: false
 })
@@ -147,7 +152,7 @@ const setMessage = (msg: string) => {
 const validateForm = () => {
     if (isLogin.value) {
         if (!loginData.value.number) {
-            setMessage('用户名不能为空');
+            setMessage('FM号不能为空');
             return false;
         }
 
@@ -197,7 +202,7 @@ const validateForm = () => {
             setMessage('密码只能包含字母、数字和下划线');
             return false;
         }
-        
+
         if (registerData.value.password.length > 20) {
             setMessage('密码长度不能大于20位');
             return false;
@@ -218,49 +223,11 @@ const validateForm = () => {
     return true;
 }
 
-
-const handleLoginUserNameInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    loginData.value.number= Number(target.value);
-}
-
-
-
-const handleRegisterEmailInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    registerData.value.email = target.value;
-}
-
-const handleRegisterPasswordInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    registerData.value.password = target.value;
-}
-
-const handleRegisterConfirmPasswordInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    registerData.value.confirmPassword = target.value;
-}
-
-const handleRegisterValidateCodeInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    registerData.value.validateCode = target.value;
-}
-
-
-const handleLoginPasswordInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    loginData.value.password = target.value;
-}
-
-const handleLoginRememberMeInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    loginData.value.isRemeberMe = target.checked;
-}
-
 const login = () => {
     if (!validateForm()) {
         return;
     }
+    console.log('loginData', loginData.value);
 
 }
 
@@ -306,8 +273,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .login-view {
-    width: 300px; // 可以根据需要设置具体的宽度
-    height: 400px; // 可以根据需要设置具体的高度
+    width: 300px; 
+    height: 400px; 
     display: flex;
     justify-content: center;
     align-items: center;
