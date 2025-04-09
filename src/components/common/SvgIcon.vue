@@ -36,8 +36,8 @@ import { watch } from 'vue';
     iconStyle.width = `${newProps.width}px`;
     iconStyle.height = `${newProps.height}px`;
     iconStyle.backgroundColor = newProps.color;
-    iconStyle.WebkitMaskImage = `url(${newProps.icon})`;
-    iconStyle.maskImage = `url(${newProps.icon})`;
+    iconStyle.WebkitMaskImage = `url(${new URL(props.icon, import.meta.url).href})`;
+    iconStyle.maskImage = `url(${new URL(props.icon, import.meta.url).href})`;
   },{deep:true})
   
   </script>

@@ -59,11 +59,12 @@ function createNewWindow(
   if (VITE_DEV_SERVER_URL) {
     const fullUrl = `${VITE_DEV_SERVER_URL}#${finalRoute}`;
     newWin.loadURL(fullUrl);
-    newWin.webContents.openDevTools();
+   
   } else {
     const indexPath = path.join(RENDERER_DIST, "index.html");
     newWin.loadFile(indexPath, { hash: finalRoute });
   }
+  newWin.webContents.openDevTools();
 
   // 窗口加载完成后显示并发送消息
   newWin.webContents.on("did-finish-load", () => {

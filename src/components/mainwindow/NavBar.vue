@@ -2,7 +2,7 @@
     <div class="nav-bar" :style="{ gap: props.uStyle?.gap || '10px' }">
         <div v-for="(item, index) in props.items" v-key="item" class="nav-bar-item-container flex-column-justify-center"
             :key="index" :class="{ 'nav-bar-item-active': item.isTab && tabState[index] }">
-            <SvgIcon :icon="item.isTab && tabState[index] ? item.activeIcon : item.icon" class="nav-bar-item"
+            <SvgIcon :icon="item.isTab && tabState[index] ? iconMap[item.activeIcon] : iconMap[item.icon]" class="nav-bar-item"
                 @click="navBarClicked(index)" :width="24" :height="24"
                 :color="item.isTab && tabState[index] ? 'var(--nav-icon-color-active)' : 'var(--nav-icon-color)'"
                 hover-color="var(--nav-icon-color)" />
@@ -14,9 +14,11 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import Window from "../../electron/window";
 import SvgIcon from "../common/SvgIcon.vue";
+import { iconMap, type IconKey } from '../../util/icon/iconMap';
+
 export interface NavBarItem {
-    icon: string;
-    activeIcon: string;
+    icon: IconKey;
+    activeIcon: IconKey;
     routeName?: string;
     route?: string;
     isTab: boolean;

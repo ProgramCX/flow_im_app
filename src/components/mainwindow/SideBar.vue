@@ -21,28 +21,19 @@ date: 2025-04-07
 <script setup lang="ts">
 import NavBar from './NavBar.vue';
 import { NavBarItem } from './NavBar.vue';
-import { onMounted, ref } from 'vue';
-
-import MessageIcon from '../../assets/svg/nav/nav_message_normal_24.svg';
-import MessageActiveIcon from '../../assets/svg/nav/nav_message_active_24.svg';
-import ContactIcon from '../../assets/svg/nav/nav_contact_normal_24.svg';
-import ContactActiveIcon from '../../assets/svg/nav/nav_contact_active_24.svg';
-import SettingIcon from '../../assets/svg/nav/nav_setting_normal_16.svg';
-import Collection from '../../assets/svg/nav/collection_24.svg';
-import Menu from '../../assets/svg/nav/menu_24.svg';
-import Folder from '../../assets/svg/nav/folder_24.svg';
+import { ref } from 'vue';
 
  const navData = ref<NavBarItem[]>([
     {
-        icon: MessageIcon,
-        activeIcon: MessageActiveIcon,
+        icon: 'message',
+        activeIcon: 'messageActive',
         routeName: 'messagelist',
         isTab: true,
         default: true
     },
     {
-        icon: ContactIcon,
-        activeIcon: ContactActiveIcon,
+        icon: 'contact',
+        activeIcon: 'contactActive',
         routeName: 'contactlist',
         isTab: true,
     }
@@ -50,26 +41,26 @@ import Folder from '../../assets/svg/nav/folder_24.svg';
 
  const bottomNavData = ref<NavBarItem[]>([
     {
-        icon: SettingIcon,
-        activeIcon: SettingIcon,
+        icon: 'setting',
+        activeIcon: 'setting',
         routeName: 'setting',
         isTab: false,
     },
     {
-        icon: Collection,
-        activeIcon: Collection,
+        icon: 'collection',
+        activeIcon: 'collection',
         routeName: 'collection',
         isTab: false,
     },
     {
-        icon: Folder,
-        activeIcon: Folder,
+        icon: 'folder',
+        activeIcon: 'folder',
         routeName: 'folder',
         isTab: false,
     },
     {
-        icon: Menu,
-        activeIcon: Menu,
+        icon: 'menu',
+        activeIcon: 'menu',
         routeName: 'menu',
         isTab: false,
     }

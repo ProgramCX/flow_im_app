@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain } from "electron";
+import { BrowserWindow } from "electron";
 
 export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
 
@@ -10,7 +10,7 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
   // ----------------- Set 系列操作（使用 win.webContents 绑定） -----------------
 
   if (checkWindow()) {
-    win.webContents.on("ipc-message", (event, channel, ...args) => {
+    win.webContents.on("ipc-message", (_event, channel, ...args) => {
       // 根据 channel 处理 set 操作
       switch (channel) {
         // 改变窗口大小
