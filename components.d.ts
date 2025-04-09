@@ -13,7 +13,10 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     FluentCheckBox: typeof import('./src/components/fluent-ui/FluentCheckBox.vue')['default']
     FluentInput: typeof import('./src/components/fluent-ui/FluentInput.vue')['default']
+    NavBar: typeof import('./src/components/mainwindow/NavBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideBar: typeof import('./src/components/mainwindow/SideBar.vue')['default']
+    SvgIcon: typeof import('./src/components/common/SvgIcon.vue')['default']
   }
 }

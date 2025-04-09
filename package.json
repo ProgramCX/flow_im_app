@@ -40,7 +40,5 @@
     "vue-tsc": "^2.0.26"
   },
   "main": "dist-electron/main.js",
-  "build": {
-    "publish": null
-  }
+  "build-icon": "electron-icon-builder --input=./public/favicon.png --output=public --flatten"
 }

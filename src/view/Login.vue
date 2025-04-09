@@ -228,7 +228,7 @@ const login = () => {
         return;
     }
     console.log('loginData', loginData.value);
-    Window.createNewWindow('/home', 400, 400, true);
+    Window.createNewWindow('/home', 900, 700, true);
 
 }
 
@@ -245,6 +245,7 @@ watch(isDark, (newValue) => {
     immediate: true,
     deep: true
 })
+
 watch(isLogin, (newValue) => {
     if (newValue) {
         // window.electron.setWindowFrameVisible(true);
@@ -266,6 +267,7 @@ onMounted(() => {
     if (body) {
         body.style.overflow = 'hidden';
     }
+    Window.setWindowResizable(false);
 
 })
 </script>

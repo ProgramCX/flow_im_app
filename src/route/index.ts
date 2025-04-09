@@ -16,6 +16,24 @@ const routes: RouteRecordRaw[] = [
     path: "/home",
     name: "home",
     component: () => import("../view/MainWindow.vue"),
+    children:[
+      {
+        path: "messagelist",
+        name: "messagelist",
+        component: () => import("../view/mainwindow/ListView.vue"),
+        // children:[
+        //   {
+        //     path: "chatroom/:id",
+        //     name: "chatroom",
+        //     component: () => import("../view/mainwindow/ChatRoom.vue"),
+        //   }
+        // ]
+      },{
+        path: "contactlist",
+        name: "contactlist",
+        component: () => import("../view/mainwindow/ContactList.vue"),
+      }
+    ]
   },
 ];
 
