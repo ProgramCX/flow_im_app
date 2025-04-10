@@ -11,7 +11,7 @@
     width: 100%;
     height: 100%;
     padding: 0;
-    background: linear-gradient(125deg,#FEF3FF 0%,#D9EBFF 100%); 
+    background: var(--bar-gradient-color); 
     
 }
 </style>

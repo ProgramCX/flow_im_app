@@ -8,68 +8,80 @@ date: 2025-04-07
         <div class="sidebar-content flex-column-space-between">
             <div class="left flex-column">
                 <h3 style="color: white;">FM</h3>
-                <img src="../../assets/png/avatar.png.jpg" alt="logo" class="logo" width="35"/>
+                <img src="../../assets/png/avatar.png.jpg" alt="logo" class="logo" width="35" />
                 <NavBar :items="navData" />
             </div>
             <div class="right flex-column">
-               <NavBar :items="bottomNavData" style="margin-bottom: 15px;" :u-style="{gap:'6px'}"/>
+                <NavBar :items="bottomNavData" style="margin-bottom: 15px;" :u-style="{ gap: '6px' }" />
             </div>
-
         </div>
     </div>
+    <PopMenu :attribute="menuAttribute" @close="menuAttribute.visible = false" />
 </template>
 <script setup lang="ts">
-import NavBar from './NavBar.vue';
-import { NavBarItem } from './NavBar.vue';
-import { ref } from 'vue';
+import { navData,bottomNavData,setNavBadge } from '../../composables/SideBar/useBadge';
+import NavBar from '../../components/mainwindow/NavBar.vue';
+import PopMenu from '../common/PopMenu/PopMenu.vue';
+import { onMounted,ref } from 'vue';
+import { PopMenuAttributeInterface } from '../common/PopMenu/index';
 
- const navData = ref<NavBarItem[]>([
+const menuAttribute = ref<PopMenuAttributeInterface>(
     {
-        icon: 'message',
-        activeIcon: 'messageActive',
-        routeName: 'messagelist',
-        isTab: true,
-        default: true
-    },
-    {
-        icon: 'contact',
-        activeIcon: 'contactActive',
-        routeName: 'contactlist',
-        isTab: true,
+        items:[
+            {
+                name: '检查更新',
+                icon: 'update',
+
+            },
+            {
+                name: '帮助',
+                icon: 'question',
+                click: () => {
+                    console.log('帮助');
+                },
+            },
+            {
+                name: '锁定',
+                icon: 'lock',
+
+            },
+            {
+                name: '设置',
+                icon: 'setting',
+                click: () => {
+                    console.log('设置');
+                },
+            },
+            {
+                name: '关于',
+                icon: 'caution',
+                click: () => {
+                    console.log('关于');
+                },
+            },
+            {
+                name: '退出账号',
+                icon: 'esc'
+            }
+        ],
+        visible: false,
+        autoPositioning: true,
     }
- ])
+);
+setNavBadge('number', 'message', 10);
 
- const bottomNavData = ref<NavBarItem[]>([
-    {
-        icon: 'setting',
-        activeIcon: 'setting',
-        routeName: 'setting',
-        isTab: false,
-    },
-    {
-        icon: 'collection',
-        activeIcon: 'collection',
-        routeName: 'collection',
-        isTab: false,
-    },
-    {
-        icon: 'folder',
-        activeIcon: 'folder',
-        routeName: 'folder',
-        isTab: false,
-    },
-    {
-        icon: 'menu',
-        activeIcon: 'menu',
-        routeName: 'menu',
-        isTab: false,
-    }
-    
- ])
-
+onMounted(() => {
+   const menuItem = bottomNavData.value.find(item => item.icon === 'menu');
+   if(menuItem){
+        menuItem.click = () => {
+            menuAttribute.value.visible = true;
+            console.log('弹出菜单');
+        };
+   }
+});
 </script>
 <style lang="scss" scoped>
-.sidebar{
+.sidebar {
     width: 60px;
     height: 100vh;
     top: 0;
@@ -78,15 +90,18 @@ import { ref } from 'vue';
     background-color: var(--sidebar-background-color);
 }
 
-.sidebar-content{
+.sidebar-content {
     width: 100%;
     height: 100%;
     padding: 0 10px;
-    .left,.right{
+
+    .left,
+    .right {
         gap: 10px;
-        .logo{
-           border-radius: 50% 50%;
-           margin-bottom: 8px;
+
+        .logo {
+            border-radius: 50% 50%;
+            margin-bottom: 8px;
         }
     }
 }

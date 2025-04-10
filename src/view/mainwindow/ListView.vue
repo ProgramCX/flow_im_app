@@ -14,6 +14,6 @@
     width: 100%;
     height: 100%;
     padding: 0;
-    background-color: var(--dim-background-color);
+    background-color: var(--mv-list-background-color);
 }
 </style>

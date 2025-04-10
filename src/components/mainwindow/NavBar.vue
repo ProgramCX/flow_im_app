@@ -1,26 +1,34 @@
 <template>
     <div class="nav-bar" :style="{ gap: props.uStyle?.gap || '10px' }">
+
         <div v-for="(item, index) in props.items" v-key="item" class="nav-bar-item-container flex-column-justify-center"
             :key="index" :class="{ 'nav-bar-item-active': item.isTab && tabState[index] }">
-            <SvgIcon :icon="item.isTab && tabState[index] ? iconMap[item.activeIcon] : iconMap[item.icon]" class="nav-bar-item"
-                @click="navBarClicked(index)" :width="24" :height="24"
-                :color="item.isTab && tabState[index] ? 'var(--nav-icon-color-active)' : 'var(--nav-icon-color)'"
-                hover-color="var(--nav-icon-color)" />
+            <el-badge :value="item.badgeType != 'none' ? item.badgeNumber ?? 0 : 0" class="item"
+                :hidden="item.badgeType === 'none'" :max="99" :is-dot="item.badgeType === 'dot'">
+                <SvgIcon :icon="item.isTab && tabState[index] ? iconMap[item.activeIcon] : iconMap[item.icon]"
+                    class="nav-bar-item" @click="navBarClicked(index)" :width="24" :height="24"
+                    :color="item.isTab && tabState[index] ? 'var(--nav-icon-color-active)' : 'var(--nav-icon-color)'"
+                    hover-color="var(--nav-icon-color)" />
+                    
+            </el-badge>
         </div>
+
     </div>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import Window from "../../electron/window";
 import SvgIcon from "../common/SvgIcon.vue";
 import { iconMap, type IconKey } from '../../util/icon/iconMap';
 
 export interface NavBarItem {
     icon: IconKey;
     activeIcon: IconKey;
+    badgeType: "dot" | "number" | "none";
+    badgeNumber?: number;
     routeName?: string;
     route?: string;
+    click?: () => void;
     isTab: boolean;
     width?: number | undefined;
     height?: number | undefined;
@@ -36,7 +44,7 @@ const router = useRouter();
 
 const props = defineProps<{
     items: NavBarItem[];
-    uStyle ?: NavBarStyle;
+    uStyle?: NavBarStyle;
 }>();
 
 const tabState = ref<Boolean[]>([]);
@@ -55,10 +63,15 @@ const navBarClicked = (index: number) => {
             return i === index;
         });
     } else {
-        Window.createNewWindow(clickedItem.route ?? '', clickedItem.width, clickedItem.height);
+        if(clickedItem.click) {
+            clickedItem.click();
+        }
+        if(clickedItem.routeName) {
+            router.push({ name: clickedItem.routeName });
+        } else if(clickedItem.route) {
+            router.push({ path: clickedItem.route });
+        }
     }
-
-
 
 }
 
@@ -74,7 +87,8 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    &>.nav-bar-item-container {
+
+    & .nav-bar-item-container {
         cursor: default;
         transition: all 0.2s ease-in-out;
         width: 35px;
@@ -83,6 +97,7 @@ onMounted(() => {
         justify-content: center;
         align-items: center;
         border-radius: 7px;
+
         &:hover {
             background-color: var(--dim8-background-color);
         }
