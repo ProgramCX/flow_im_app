@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import './util/theme';
+import TitleBar from './components/common/TitleBar.vue';
 </script>
 
 <template>
   <div class="app">
+    <TitleBar/>
     <router-view />
   </div>
 </template>

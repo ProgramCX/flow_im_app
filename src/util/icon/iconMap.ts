@@ -17,6 +17,13 @@ import Caution from '/assets/svg/caution_24.svg';
 import Esc from '/assets/svg/esc_24.svg';
 import Question from '/assets/svg/question_24.svg';
 import Update from '/assets/svg/update_24.svg';
+import arrowRightSmall from '/assets/svg/arrow_right_small_16.svg';
+import Close from '/assets/svg/close_24.svg';
+import Minimize from '/assets/svg/minimize_24.svg';
+import Max from '/assets/svg/max_24.svg';
+import Brush from '/assets/svg/brush_24.svg';
+import Search from '/assets/svg/search.svg';
+import Add from '/assets/svg/add_24.svg';
 // 图标 key 类型
 export type IconKey =
   | 'message'
@@ -31,7 +38,14 @@ export type IconKey =
   | 'caution'
   | 'esc'
   | 'question'
-  | 'update';
+  | 'update'
+  | 'arrowRightSmall'
+  | 'close'
+  | 'minimize'
+  | 'max'
+  | 'brush'
+  | 'search'
+  | 'add';
 
 // 图标映射表
 export const iconMap: Record<IconKey, string> = {
@@ -48,5 +62,12 @@ export const iconMap: Record<IconKey, string> = {
   esc :Esc,
   question: Question,
   update: Update,
+  arrowRightSmall: arrowRightSmall,
+  close: Close,
+  minimize: Minimize,
+  max: Max,
+  brush: Brush,
+  search: Search,
+  add: Add,
 };
 

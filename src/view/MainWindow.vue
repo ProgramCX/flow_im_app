@@ -51,6 +51,8 @@
     window.removeEventListener('mousemove', onMove);
     window.removeEventListener('mouseup', onUp);
   });
+
+
   </script>
   
   <style lang="scss" scoped>

@@ -4,7 +4,7 @@ author: 程旭
 date: 2025-04-10
 -->
 <template>
-    <div class="pop-menu flex-column-all-center" ref="popMenuRef" v-if="props.attribute.visible">
+    <div class="pop-menu flex-column-all-center" ref="popMenuRef" v-if="props.attribute.visible" @mouseenter="emit('hover')" @mouseleave="emit('hoverEnd')">
         <PopMenuItem v-for="(item, index) in props.attribute.items" :key="index" :item="item" />
     </div>
 </template>
@@ -24,6 +24,8 @@ const props = defineProps<{
 
 const emit = defineEmits<{
     (e: 'close'): void;
+    (e: 'hover'): void;
+    (e: "hoverEnd"): void;
 }>();
 
 const popMenuRef = ref<HTMLElement | null>(null);
@@ -37,34 +39,35 @@ const handleClickOutside = (_e: MouseEvent) => {
 
 const setPosition = (x: number, y: number) => {
     const popMenu = popMenuRef.value;
-    // if (!popMenu) {
-    //     return;
-    // }
+    if (!popMenu) {
+        return;
+    }
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const popMenuWidth = popMenu.offsetWidth;
     const popMenuHeight = popMenu.offsetHeight;
 
     if (x + popMenuWidth > windowWidth) {
-        popMenu.style.left = `${windowWidth - popMenuWidth -10}px`;
+        popMenu.style.left = `${windowWidth - popMenuWidth - 20}px`;
+        console.log('x', x, windowWidth, popMenuWidth);
     } else {
         popMenu.style.left = `${x}px`;
-
     }
 
     if (y + popMenuHeight > windowHeight) {
-        popMenu.style.top = `${windowHeight - popMenuHeight -10}px`;
+        popMenu.style.top = `${windowHeight - popMenuHeight - 20}px`;
+        console.log('y', y, windowHeight, popMenuHeight);
     } else {
         popMenu.style.top = `${y}px`;
 
     }
 }
 
-
-watch(() => props.attribute.visible, async (newVal) => {
+try{ 
+    watch(() => props.attribute.visible, async (newVal) => {
     console.log('visible', newVal);
     if (newVal) {
-        await nextTick();
+        await nextTick();   // 等待DOM更新完成
         if (props.attribute.autoPositioning) {
             setPosition(x.value, y.value);
         } else {
@@ -81,6 +84,11 @@ watch(() => props.attribute.visible, async (newVal) => {
         document.removeEventListener('click', handleClickOutside);
     }
 }, { deep: true, immediate: true });
+}
+catch (e) {
+    console.error('Error in PopMenu:', e);
+}
+
 
 
 </script>

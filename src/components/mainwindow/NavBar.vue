@@ -19,7 +19,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import SvgIcon from "../common/SvgIcon.vue";
-import { iconMap, type IconKey } from '../../util/icon/iconMap';
+import { iconMap, type IconKey } from '@/util/icon/iconMap.ts';
 
 export interface NavBarItem {
     icon: IconKey;

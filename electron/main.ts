@@ -103,7 +103,7 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createNewWindow("/", 300, 500, true);
+    createNewWindow("/", 350, 500, true);
   }
 });
 
@@ -111,9 +111,9 @@ app.on("activate", () => {
 app.whenReady().then(() => {
   createNewWindow(
     "/",
-    300,
+    350,
     500,
-    true,
+    false,
     true,
     true,
     true,
@@ -131,7 +131,7 @@ ipcMain.on("create-new-window", (
   route: string,
   width: number,
   height: number,
-  frame: boolean = true,
+  frame: boolean = false,
   hideMenuBar: boolean = true,
   resizable: boolean = true,
   movable: boolean = true,

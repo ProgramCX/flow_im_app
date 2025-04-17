@@ -10,7 +10,7 @@ export const navData = ref<NavBarItem[]>([
     {
         icon: 'message',
         activeIcon: 'messageActive',
-        routeName: 'messagelist',
+        routeName: 'MessageList',
         isTab: true,
         default: true,
         badgeType: 'none',

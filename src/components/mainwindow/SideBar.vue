@@ -24,6 +24,7 @@ import NavBar from '../../components/mainwindow/NavBar.vue';
 import PopMenu from '../common/PopMenu/PopMenu.vue';
 import { onMounted,ref } from 'vue';
 import { PopMenuAttributeInterface } from '../common/PopMenu/index';
+import {toggleDark} from "@/util/theme";
 
 const menuAttribute = ref<PopMenuAttributeInterface>(
     {
@@ -50,6 +51,33 @@ const menuAttribute = ref<PopMenuAttributeInterface>(
                 icon: 'setting',
                 click: () => {
                     console.log('设置');
+                },
+                children: {
+                    items: [
+                        {
+                            name: '切换主题',
+                            icon: 'brush',
+                            click: () => {
+                                toggleDark();
+                            },
+                        },
+                        {
+                            name: '语言',
+                            // icon: 'language',
+                            click: () => {
+                                console.log('语言');
+                            },
+                        },
+                        {
+                            name: '快捷键',
+                            // icon: 'shortcut',
+                            click: () => {
+                                console.log('快捷键');
+                            },
+                        },
+                    ],
+                    visible: false,
+                    autoPositioning: false,
                 },
             },
             {

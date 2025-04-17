@@ -16,7 +16,8 @@ export default function setupWindowIpcHandlers(win: BrowserWindow | null) {
         // 改变窗口大小
         case "resize-window": {
           const [width, height] = args as number[];
-          win.setSize(width, height);
+          win.setSize(width, height,true);
+          console.log("resize-window", width, height);
           break;
         }
         // 设置窗口边框是否可见

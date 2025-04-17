@@ -42,6 +42,21 @@ html.dark {
   --pop-item-background-color-active: rgba(35, 35, 35,0.2);
   --pop-menu-border-color:rgba(80, 80, 80);
   --pop-menu-box-shadow: none;
+
+  --inputbox-background-color: #282828;
+  --inputbox-background-color-hover: #808080;
+  --inputbox-border-color-active: #0066CC ;
+  --inputbox-placeholder-color: #e3e3e3;
+
+  --list-item-background-color: #1B1B1B;
+  --list-item-background-color-hover: #2D2D2D;
+  --list-item-background-color-active: #162A3F;
+  --list-item-background-color-top: #282828;
+
+  --tip-grey-fore-color: #808080;
+
+  --grey-button-background-color: #393939;
+  --grey-button-background-color-hover: #222222;
 }
 
 html {
@@ -72,6 +87,22 @@ html {
   --pop-item-background-color-hover: rgba(240, 240, 240, 0.1);
   --pop-item-background-color-active: rgba(230, 230, 230, 0.2);
   --pop-menu-box-shadow: 8px 6px 10px 0px rgba(196, 196, 196, 0.2);
+
+  --inputbox-background-color: #F5F5F5;
+  --inputbox-placeholder-color: #999999;
+  --inputbox-border-color-active: #0099FF;
+  --inputbox-background-color-hover: #5e5e5e;
+
+  --grey-button-background-color: #EBEBEB;
+  --grey-button-background-color-active: #D7D7D7;
+
+  --list-item-background-color: #FFFFFF;
+  --list-item-background-color-hover: #F5F5F5;
+  --list-item-background-color-active: #CCEBFF;
+  --list-item-background-color-top: #E7E7E7;
+
+  --tip-grey-fore-color: #a2a2a2;
+
   background-color: var(--main-bg-color);
 
   color: var(--main-fore-color);
@@ -119,7 +150,7 @@ body {
   align-items: center;
 }
 
-.flex-row-space-bettween {
+.flex-row-space-between {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -145,12 +176,12 @@ body {
 }
 
 .flex-row {
-  display: row;
+  display: flex;
   flex-direction: row;
 }
 
 .flex-column {
-  display: column;
+  display: flex;
   flex-direction: column;
 }
 

@@ -19,8 +19,8 @@ const routes: RouteRecordRaw[] = [
     children:[
       {
         path: "messagelist",
-        name: "messagelist",
-        component: () => import("../view/mainwindow/ListView.vue"),
+        name: "MessageList",
+        component: () => import("../view/mainwindow/MessageList.vue"),
         // children:[
         //   {
         //     path: "chatroom/:id",

@@ -1,7 +1,7 @@
 import { iconMap, type IconKey } from '../../../util/icon/iconMap';
 
 interface PopMenuAttributeInterface {
-    items: PopMenuItem[];
+    items: PopMenuItemInterface[];
     position?: {
         x: number;
         y: number;
@@ -14,7 +14,7 @@ interface PopMenuItemInterface{
     name: string;
     icon?:IconKey;
     click?: () => void;
-    children?: PopMenuItem[];
+    children?: PopMenuAttributeInterface;
     disabled?: boolean;
     divider?: boolean;
 }
