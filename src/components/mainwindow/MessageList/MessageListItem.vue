@@ -9,7 +9,7 @@
     </div>
     <div class="message-list-item-right flex-column-justify-center">
       <span id="date">{{ props.data.dateTime }}</span>
-      <el-badge :value="props.data.unreadCount??0" :is-dot="props.data.notDisturb" badge-style="height:15px;font-size:10px;display:flex;align-items:center"/>
+      <el-badge :value="props.data.unreadCount??0" :v-if="props.data.unreadCount??0!=0" :is-dot="props.data.notDisturb" :badge-style="props.data.notDisturb?'':'height:15px;font-size:10px;display:flex;align-items:center'"/>
     </div>
   </div>
 </template>
@@ -79,6 +79,7 @@ const props = defineProps<{
 
   .message-list-item-right{
     gap: 8px;
+    align-items: flex-end;
     #date{
       font-size: 10px;
       color: var(--tip-grey-fore-color);

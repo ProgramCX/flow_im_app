@@ -6,9 +6,9 @@ date: 2025-04-07
 <template>
     <div class="sidebar" style="width: 60px;">
         <div class="sidebar-content flex-column-space-between">
-            <div class="left flex-column">
+            <div class="left flex-column-justify-center">
                 <h3 style="color: white;">FM</h3>
-                <img src="../../assets/png/avatar.png.jpg" alt="logo" class="logo" width="35" />
+                <img src="../../assets/png/avatar.png.jpg" alt="logo" class="logo" :width="35" />
                 <NavBar :items="navData" />
             </div>
             <div class="right flex-column">
@@ -107,6 +107,8 @@ onMounted(() => {
         };
    }
 });
+
+
 </script>
 <style lang="scss" scoped>
 .sidebar {
@@ -121,8 +123,8 @@ onMounted(() => {
 .sidebar-content {
     width: 100%;
     height: 100%;
-    padding: 0 10px;
-
+    padding: 0 15px;
+    align-items: center;
     .left,
     .right {
         gap: 10px;

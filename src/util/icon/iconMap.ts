@@ -24,6 +24,7 @@ import Max from '/assets/svg/max_24.svg';
 import Brush from '/assets/svg/brush_24.svg';
 import Search from '/assets/svg/search.svg';
 import Add from '/assets/svg/add_24.svg';
+import More from '/assets/svg/more_24.svg';
 // 图标 key 类型
 export type IconKey =
   | 'message'
@@ -45,7 +46,8 @@ export type IconKey =
   | 'max'
   | 'brush'
   | 'search'
-  | 'add';
+  | 'add'
+  | 'more';
 
 // 图标映射表
 export const iconMap: Record<IconKey, string> = {
@@ -69,5 +71,6 @@ export const iconMap: Record<IconKey, string> = {
   brush: Brush,
   search: Search,
   add: Add,
+  more: More,
 };
 
