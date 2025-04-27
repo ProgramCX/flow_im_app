@@ -127,6 +127,10 @@ export default class Window {
     window.electron.maximizeWindow();
   }
 
+  static setMinimumSize(width: number, height: number) {
+    window.electron.setMinimumSize(width, height);
+  }
+  
   static restoreWindow() {
     window.electron.restoreWindow();
   }
@@ -139,107 +143,107 @@ export default class Window {
     window.electron.destroyWindow();
   }
 
-  static async getWindowPosition() {
-    return await window.electron.getWindowPosition().then((position) => {
-      return position;
-    });
-  }
+  // static async getWindowPosition() {
+  //   return await window.electron.getWindowPosition().then((position) => {
+  //     return position;
+  //   });
+  // }
 
-  static async getWindowSize() {
-    return await window.electron.getWindowSize().then((size) => {
-      return size;
-    });
-  }
+  // static async getWindowSize() {
+  //   return await window.electron.getWindowSize().then((size) => {
+  //     return size;
+  //   });
+  // }
 
-  static async getWindowTitle() {
-    return await window.electron.getWindowTitle().then((title) => {
-      return title;
-    });
-  }
+  // static async getWindowTitle() {
+  //   return await window.electron.getWindowTitle().then((title) => {
+  //     return title;
+  //   });
+  // }
 
-  static async getWindowBackgroundColor() {
-    return await window.electron.getWindowBackgroundColor().then((color) => {
-      return color;
-    });
-  }
+  // static async getWindowBackgroundColor() {
+  //   return await window.electron.getWindowBackgroundColor().then((color) => {
+  //     return color;
+  //   });
+  // }
 
-  static async getWindowOpacity() {
-    return await window.electron.getWindowOpacity().then((opacity) => {
-      return opacity;
-    });
-  }
+  // static async getWindowOpacity() {
+  //   return await window.electron.getWindowOpacity().then((opacity) => {
+  //     return opacity;
+  //   });
+  // }
 
-  static async isWindowVisible() {
-    return await window.electron.isWindowVisible().then((visible) => {
-      return visible;
-    });
-  }
+  // static async isWindowVisible() {
+  //   return await window.electron.isWindowVisible().then((visible) => {
+  //     return visible;
+  //   });
+  // }
 
-  static async isWindowMaximized() {
-    return await window.electron.isWindowMaximized().then((maximized) => {
-      return maximized;
-    });
-  }
+  // static async isWindowMaximized() {
+  //   return await window.electron.isWindowMaximized().then((maximized) => {
+  //     return maximized;
+  //   });
+  // }
 
-  static async isWindowMinimized() {
-    return await window.electron.isWindowMinimized().then((minimized) => {
-      return minimized;
-    });
-  }
+  // static async isWindowMinimized() {
+  //   return await window.electron.isWindowMinimized().then((minimized) => {
+  //     return minimized;
+  //   });
+  // }
 
-  static async isWindowFullScreen() {
-    return await window.electron.isWindowFullScreen().then((fullScreen) => {
-      return fullScreen;
-    });
-  }
+  // static async isWindowFullScreen() {
+  //   return await window.electron.isWindowFullScreen().then((fullScreen) => {
+  //     return fullScreen;
+  //   });
+  // }
 
-  static async isWindowResizable() {
-    return await window.electron.isWindowResizable().then((resizable) => {
-      return resizable;
-    });
-  }
+  // static async isWindowResizable() {
+  //   return await window.electron.isWindowResizable().then((resizable) => {
+  //     return resizable;
+  //   });
+  // }
 
-  static async isWindowVisibleOnAllWorkspaces() {
-    return await window.electron
-      .isWindowVisibleOnAllWorkspaces()
-      .then((visible) => {
-        return visible;
-      });
-  }
+  // static async isWindowVisibleOnAllWorkspaces() {
+  //   return await window.electron
+  //     .isWindowVisibleOnAllWorkspaces()
+  //     .then((visible) => {
+  //       return visible;
+  //     });
+  // }
 
-  static async isWindowAlwaysOnTop() {
-    return await window.electron.isWindowAlwaysOnTop().then((alwaysOnTop) => {
-      return alwaysOnTop;
-    });
-  }
+  // static async isWindowAlwaysOnTop() {
+  //   return await window.electron.isWindowAlwaysOnTop().then((alwaysOnTop) => {
+  //     return alwaysOnTop;
+  //   });
+  // }
 
-  static async isWindowMovable() {
-    return await window.electron.isWindowMovable().then((movable) => {
-      return movable;
-    });
-  }
+  // static async isWindowMovable() {
+  //   return await window.electron.isWindowMovable().then((movable) => {
+  //     return movable;
+  //   });
+  // }
 
-  static async isWindowMinimizable() {
-    return await window.electron.isWindowMinimizable().then((minimizable) => {
-      return minimizable;
-    });
-  }
+  // static async isWindowMinimizable() {
+  //   return await window.electron.isWindowMinimizable().then((minimizable) => {
+  //     return minimizable;
+  //   });
+  // }
 
-  static async isWindowMaximizable() {
-    return await window.electron.isWindowMaximizable().then((maximizable) => {
-      return maximizable;
-    });
-  }
+  // static async isWindowMaximizable() {
+  //   return await window.electron.isWindowMaximizable().then((maximizable) => {
+  //     return maximizable;
+  //   });
+  // }
 
-  static async isWindowClosable() {
-    return await window.electron.isWindowClosable().then((closable) => {
-      return closable;
-    });
-  }
+  // static async isWindowClosable() {
+  //   return await window.electron.isWindowClosable().then((closable) => {
+  //     return closable;
+  //   });
+  // }
 
-  static async isWindowMenuBarVisible() {
-    return await window.electron.isWindowMenuBarVisible().then((visible) => {
-      return visible;
-    });
-  }
+  // static async isWindowMenuBarVisible() {
+  //   return await window.electron.isWindowMenuBarVisible().then((visible) => {
+  //     return visible;
+  //   });
+  // }
 }

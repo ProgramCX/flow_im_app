@@ -15,15 +15,109 @@
 
 html.dark {
   --main-bg-color: rgb(40, 40, 40);
+
   --main-fore-color: #ffffff;
+
+  --dim-background-color: rgb(50, 50, 50);
+  --dim2-background-color: rgb(55, 55, 55);
+  --dim3-background-color: rgb(60, 60, 60);
+  --dim4-background-color: rgb(65, 65, 6);
+  --dim5-background-color: rgb(70, 70, 70);
+  --dim6-background-color: rgb(75, 75, 75);
+  --dim7-background-color: rgb(80, 80, 80);
+  --dim8-background-color: rgb(85, 85, 85);
+  --dim9-background-color: rgb(90, 90, 90);
+
+  --sidebar-background-color:#1F1F1F;
+
+  --bar-gradient-color: linear-gradient(135deg,#2F2932 0%,#13212F 100%); 
+
+  --nav-icon-color: rgb(255, 255, 255, 0.7);
+  --nav-icon-color-active: #0065d1;
+  
+  --mv-list-background-color: #1B1B1B;
+
+  --pop-menu-background-color: rgba(40, 40, 40, 0.3);
+  --pop-item-background-color-hover: var(--dim2-background-color);
+  --pop-item-background-color-active: rgba(35, 35, 35,0.2);
+  --pop-menu-border-color:rgba(80, 80, 80);
+  --pop-menu-box-shadow: none;
+
+  --inputbox-background-color: #282828;
+  --inputbox-background-color-hover: #808080;
+  --inputbox-border-color-active: #0066CC ;
+  --inputbox-placeholder-color: #e3e3e3;
+
+  --list-item-background-color: #1B1B1B;
+  --list-item-background-color-hover: #2D2D2D;
+  --list-item-background-color-active: #162A3F;
+  --list-item-background-color-top: #282828;
+
+  --tip-grey-fore-color: #808080;
+
+  --grey-button-background-color: #393939;
+  --grey-button-background-color-hover: #222222;
+
+  --topbar-icon-color: var(--main-fore-color);
+  --topbar-icon-color-hover: #0066CC ;
+
+  --border-bottom-color: #393B40;
 }
 
 html {
   --main-bg-color: white;
   --main-fore-color: rgb(40, 40, 40);
 
+  --dim-background-color: rgba(250, 250, 250, 0.9);
+  --dim2-background-color: rgba(250, 250, 250, 0.8);
+  --dim3-background-color: rgba(250, 250, 250, 0.7);
+  --dim4-background-color: rgba(250, 250, 250, 0.6);
+  --dim5-background-color: rgba(250, 250, 250, 0.5);
+  --dim6-background-color: rgba(250, 250, 250, 0.4);
+  --dim7-background-color: rgba(250, 250, 250, 0.3);
+  --dim8-background-color: rgba(250, 250, 250, 0.2);
+  --dim9-background-color: rgba(250, 250, 250, 0.1);
+
+  --sidebar-background-color: #0099FF;
+
+  --bar-gradient-color: linear-gradient(125deg,#FEF3FF 0%,#D9EBFF 100%);
+
+  --nav-icon-color: rgba(255, 255, 255, 0.7);
+
+  --nav-icon-color-active: #fff;
+
+  --mv-list-background-color: #ffffff;
+  
+  --pop-menu-background-color: var(--dim2-background-color);
+  --pop-item-background-color-hover: rgba(240, 240, 240, 0.1);
+  --pop-item-background-color-active: rgba(230, 230, 230, 0.2);
+  --pop-menu-box-shadow: 8px 6px 10px 0px rgba(196, 196, 196, 0.2);
+
+  --inputbox-background-color: #F5F5F5;
+  --inputbox-placeholder-color: #999999;
+  --inputbox-border-color-active: #0099FF;
+  --inputbox-background-color-hover: #5e5e5e;
+
+  --grey-button-background-color: #EBEBEB;
+  --grey-button-background-color-active: #D7D7D7;
+
+  --list-item-background-color: #FFFFFF;
+  --list-item-background-color-hover: #F5F5F5;
+  --list-item-background-color-active: #CCEBFF;
+  --list-item-background-color-top: #E7E7E7;
+
+  --tip-grey-fore-color: #a2a2a2;
+
   background-color: var(--main-bg-color);
+
   color: var(--main-fore-color);
+
+  --pop-menu-border-color:none;
+
+  --topbar-icon-color: var(--main-fore-color);
+  --topbar-icon-color-hover:var(--sidebar-background-color) ;
+
+  --border-bottom-color: #d9d9d9;
 }
 
 
@@ -35,7 +129,7 @@ body {
 
 #app {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -66,7 +160,7 @@ body {
   align-items: center;
 }
 
-.flex-row-space-bettween {
+.flex-row-space-between {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -85,13 +179,19 @@ body {
   justify-content: center;
 }
 
+.flex-column-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .flex-row {
-  display: row;
+  display: flex;
   flex-direction: row;
 }
 
 .flex-column {
-  display: column;
+  display: flex;
   flex-direction: column;
 }
 
@@ -115,3 +215,27 @@ body {
     background-color: #ffffff;
   }
 } */
+
+/* 为滚动条整体设置样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* 为滚动条的轨道设置样式 */
+::-webkit-scrollbar-track {
+  background: rgba(#101F1C, 0.1);
+  border-radius: 2em;
+}
+
+/* 为滚动条的滑块设置样式 */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(144, 147, 153, .3);
+  border-radius: 2em;
+  transition: background-color .3s;
+}
+
+/* 当鼠标悬停在滑块上时改变滑块的颜色 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(144, 147, 153, .1);
+}
