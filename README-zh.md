@@ -40,8 +40,8 @@ git clone https://github.com/ProgramCX/flow_im_app.git
 2. 安装依赖
 ```bash
 cd flow_im_app
-
-cnpm install    #如果你在中国大陆地区，建议使用cnpm安装依赖
+npm set registry https://registry.npmmirror.com # 如果在中国大陆地区，建议使用淘宝镜像
+npm install   
 ```
 
 3. 启动项目

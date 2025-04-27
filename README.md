@@ -39,7 +39,8 @@ git clone https://github.com/ProgramCX/flow_im_app.git
 2. Install dependencies:
 ```bash
 cd flow_im_app
-cnpm install    # If you are in mainland China, using cnpm is recommended.
+npm set registry https://registry.npmmirror.com  # If you are in mainland China, using the Taobao mirror is recommended.
+npm install
 ```
 3. Start the project:
 ```bash
