@@ -30,7 +30,7 @@
             <div class="tool">
                 <FluentCheckBox class="remember-me" v-model="loginData.isRemeberMe">记住我</FluentCheckBox>
                 <!-- <fluent-checkbox class="remember-me" @input="handleLoginRememberMeInput">记住我</fluent-checkbox> -->
-                <el-link class="register" @click="toggleState(false)">注册</el-link>
+                <el-link class="register" @click="isLogin = !isLogin">注册</el-link>
             </div>
             <fluent-button class="login form-input" @click="login" appearance="accent">登录</fluent-button>
         </div>
@@ -54,7 +54,7 @@
                 <el-text style="color: red;">{{ messageRegister }}</el-text>
             </div>
             <div class="tool">
-                <el-link class="login" @click="toggleState(true)">已有账号？前往登录</el-link>
+                <el-link class="login" @click="isLogin = !isLogin">已有账号？前往登录</el-link>
             </div>
             <fluent-button class="login form-input" @click="register" appearance="accent">注册</fluent-button>
         </div>
@@ -228,7 +228,7 @@ const login = () => {
         return;
     }
     console.log('loginData', loginData.value);
-    Window.createNewWindow('/home/messagelist', 900, 700, false);
+    Window.createNewWindow('/home', 400, 400, true);
 
 }
 
@@ -245,34 +245,20 @@ watch(isDark, (newValue) => {
     immediate: true,
     deep: true
 })
+watch(isLogin, (newValue) => {
+    if (newValue) {
+        // window.electron.setWindowFrameVisible(true);
+        Window.setWindowTitle('登录');
+        Window.setWindowSize(350, 500);
+    } else {
+        window.electron.setWindowTitle('注册');
+        window.electron.resizeWindow(350, 580);
+    }
+}, {
+    immediate: true,
+    deep: true
+})
 
-// watch(isLogin.value, (newValue) => {
-//     if (newValue) {
-//         // window.electron.setWindowFrameVisible(true);
-//         Window.setWindowTitle('登录');
-//         Window.setWindowSize(350, 400);
-//     } else {
-//         window.electron.setWindowTitle('注册');
-//         window.electron.resizeWindow(350, 580);
-//     }
-// }, {
-//     immediate: true,
-//     deep: true
-// })
-
-const toggleState = (login: boolean) => {
-  Window.setWindowResizable(true);
-  if(login){
-    Window.setWindowTitle('登录');
-
-    Window.setWindowSize(350, 500);
-  }else{
-    window.electron.setWindowTitle('注册');
-    window.electron.resizeWindow(350, 580);
-  }
-  isLogin.value = !isLogin.value;
-  Window.setWindowResizable(false);
-}
 onMounted(() => {
     window.electron.setWindowTitle('登录');
     //防止页面滚动
@@ -280,7 +266,6 @@ onMounted(() => {
     if (body) {
         body.style.overflow = 'hidden';
     }
-  Window.setWindowResizable(false);
 
 })
 </script>

@@ -86,10 +86,6 @@ contextBridge.exposeInMainWorld("electron", {
   setWindowInTaskbar: (inTaskbar: boolean) =>
     ipcRenderer.send("set-window-in-taskbar", inTaskbar),
 
-  //设置窗口最小大小
-  setMinimumSize: (width: number, height: number) =>
-    ipcRenderer.send("set-window-min-size", width, height),
-
   // 窗口操作
   minimizeWindow: () => ipcRenderer.send("minimize-window"),
   maximizeWindow: () => ipcRenderer.send("maximize-window"),

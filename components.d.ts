@@ -8,24 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    ChatContent: typeof import('./src/components/mainwindow/ChatView/ChatContent.vue')['default']
-    ChatInput: typeof import('./src/components/mainwindow/ChatView/ChatInput.vue')['default']
-    ChatTitle: typeof import('./src/components/mainwindow/ChatView/ChatTitle.vue')['default']
-    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElText: typeof import('element-plus/es')['ElText']
     FluentCheckBox: typeof import('./src/components/fluent-ui/FluentCheckBox.vue')['default']
     FluentInput: typeof import('./src/components/fluent-ui/FluentInput.vue')['default']
-    InputSearch: typeof import('./src/components/common/InputBox/InputSearch.vue')['default']
-    MessageListItem: typeof import('./src/components/mainwindow/MessageList/MessageListItem.vue')['default']
-    NavBar: typeof import('./src/components/mainwindow/NavBar.vue')['default']
-    PopMenu: typeof import('./src/components/common/PopMenu/PopMenu.vue')['default']
-    PopMenuItem: typeof import('./src/components/common/PopMenu/PopMenuItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SideBar: typeof import('./src/components/mainwindow/SideBar.vue')['default']
-    SvgIcon: typeof import('./src/components/common/SvgIcon.vue')['default']
-    TitleBar: typeof import('./src/components/common/TitleBar.vue')['default']
   }
 }

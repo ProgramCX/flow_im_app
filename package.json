@@ -37,9 +37,10 @@
     "vite": "^5.1.6",
     "vite-plugin-electron": "^0.28.6",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "vite-plugin-svgr": "^4.3.0",
     "vue-tsc": "^2.0.26"
   },
   "main": "dist-electron/main.js",
-  "build-icon": "electron-icon-builder --input=./public/favicon.png --output=public --flatten"
+  "build": {
+    "publish": null
+  }
 }
