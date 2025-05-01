@@ -61,7 +61,16 @@ html.dark {
   --topbar-icon-color: var(--main-fore-color);
   --topbar-icon-color-hover: #0066CC ;
 
+  --primary-color: #0066CC ;
+  --primary-color-hover: #1472D0;
+  --primary-color-active: #0056ab;
+
   --border-bottom-color: #393B40;
+
+  --default-button-background-color: #262626;
+  --default-button-background-color-active:#202020;
+  --default-button-background-color-hover: #373737;
+  --default-button-border-color: #4d4d4d;
 }
 
 html {
@@ -118,8 +127,16 @@ html {
   --topbar-icon-color-hover:var(--sidebar-background-color) ;
 
   --border-bottom-color: #d9d9d9;
-}
 
+  --primary-color: #0099FF;
+  --primary-color-hover: #0093f5 ;
+  --primary-color-active: #0086e0;
+
+  --default-button-background-color: #ffffff;
+  --default-button-background-color-hover: #f5f5f5;
+  --default-button-background-color-active:#e0e0e0;
+  --default-button-border-color: #cbcbcb ;
+}
 
 
 body {

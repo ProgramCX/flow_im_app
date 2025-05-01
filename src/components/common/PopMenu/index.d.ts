@@ -17,6 +17,9 @@ interface PopMenuItemInterface{
     children?: PopMenuAttributeInterface;
     disabled?: boolean;
     divider?: boolean;
+    checked?: boolean;
+    checkable?: boolean;
+    multiCheck?: boolean;
 }
 
 export {PopMenuAttributeInterface, PopMenuItemInterface}

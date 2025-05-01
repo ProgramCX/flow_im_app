@@ -5,10 +5,12 @@
         <div class="content flex-row-align-center">
             <slot name="default"></slot>
             <div class="popmenu-item-icon">
-                <SvgIcon :icon="iconMap[props.item.icon]" :width="16" :height="16" />
+                <SvgIcon :icon="iconMap['tick']" :width="16" :height="16" v-if="props.item.checked??false" />
+                <SvgIcon :icon="iconMap[props.item.icon]" :width="16" :height="16" v-if="props.item.icon??false" />
             </div>
-            <div class="popmenu-item-text">
+            <div class="popmenu-item-text flex-row-align-center">
                 <slot name="text"></slot>
+                <div class="placeholder" style="width: 16px;height: 16px" v-if="!(props.item.checked??false) && (props.item.checkable??false)"></div>
                 <span class="text">{{ props.item.name }}</span>
             </div>
         </div>
@@ -30,8 +32,12 @@ import type { PopMenuItemInterface, PopMenuAttributeInterface } from '.';
 
 const props = defineProps<{
     item: PopMenuItemInterface;
+    index: number;
 }>();
 
+const emit = defineEmits<{
+    (e: 'check', data:{checked:boolean,index: number,multiCheck:boolean} ): void;
+}>();
 const submenu = ref<PopMenuAttributeInterface>({
     visible: false,
     items: [],
@@ -42,6 +48,12 @@ const menuItemRef = ref<HTMLElement | null>(null);
 
 const handleClick = () => {
     props.item.click?.();
+    if(props.item.checkable??false){
+      emit('check', {checked: !props.item.checked, index: props.index, multiCheck: props.item.multiCheck});
+      // if(props.item.multiCheck){
+      //   props.item.checked = !props.item.checked;
+      // }
+    }
 };
 
 

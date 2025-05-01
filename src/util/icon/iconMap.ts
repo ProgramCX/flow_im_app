@@ -25,6 +25,14 @@ import Brush from '/assets/svg/brush_24.svg';
 import Search from '/assets/svg/search.svg';
 import Add from '/assets/svg/add_24.svg';
 import More from '/assets/svg/more_24.svg';
+import Expression from '/assets/svg/expression_24.svg';
+import Microphone from '/assets/svg/microphone.svg';
+import Image from '/assets/svg/image_24.svg';
+import ScreenShoot from '/assets/svg/screenshot_24.svg';
+import ArrowUp from '/assets/svg/arrow_up_24.svg';
+import ArrowDown from '/assets/svg/arrow_down_24.svg';
+import Tick from '/assets/svg/tick_24.svg';
+
 // 图标 key 类型
 export type IconKey =
   | 'message'
@@ -47,7 +55,14 @@ export type IconKey =
   | 'brush'
   | 'search'
   | 'add'
-  | 'more';
+  | 'more'
+  | 'expression'
+  | 'microphone'
+  | 'image'
+  | 'screenshot'
+  | 'arrowUp'
+  | 'arrowDown'
+  | 'tick'
 
 // 图标映射表
 export const iconMap: Record<IconKey, string> = {
@@ -72,5 +87,12 @@ export const iconMap: Record<IconKey, string> = {
   search: Search,
   add: Add,
   more: More,
+  expression: Expression,
+  microphone: Microphone,
+  image: Image,
+  screenshot: ScreenShoot,
+  arrowUp: ArrowUp,
+  arrowDown: ArrowDown,
+  tick: Tick,
 };
 

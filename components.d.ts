@@ -17,6 +17,7 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     FluentCheckBox: typeof import('./src/components/fluent-ui/FluentCheckBox.vue')['default']
     FluentInput: typeof import('./src/components/fluent-ui/FluentInput.vue')['default']
+    FmButton: typeof import('./src/components/common/Button/FmButton.vue')['default']
     InputSearch: typeof import('./src/components/common/InputBox/InputSearch.vue')['default']
     MessageListItem: typeof import('./src/components/mainwindow/MessageList/MessageListItem.vue')['default']
     NavBar: typeof import('./src/components/mainwindow/NavBar.vue')['default']

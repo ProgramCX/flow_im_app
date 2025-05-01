@@ -18,10 +18,11 @@
   display: flex;
   flex-direction: column;
   background-color: transparent;
+  flex: 1;
   border-bottom: 1px solid var(--border-bottom-color);
   .chat-inner-content {
     width: 100%;
-    height: calc(100vh - 220px);
+    height: calc(100vh - 500px);
     overflow-y: auto;
   }
 }

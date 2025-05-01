@@ -21,6 +21,7 @@ const isBlank = ref<boolean>(false);
     background: var(--bar-gradient-color); 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
 }
 </style>

@@ -5,7 +5,7 @@ date: 2025-04-10
 -->
 <template>
     <div class="pop-menu flex-column-all-center" ref="popMenuRef" v-if="props.attribute.visible" @mouseenter="emit('hover')" @mouseleave="emit('hoverEnd')">
-        <PopMenuItem v-for="(item, index) in props.attribute.items" :key="index" :item="item" />
+        <PopMenuItem v-for="(item, index) in props.attribute.items" :key="index" :item="item" :index="index" @check="handleCheck"/>
     </div>
 </template>
 <script setup lang="ts">
@@ -26,6 +26,7 @@ const emit = defineEmits<{
     (e: 'close'): void;
     (e: 'hover'): void;
     (e: "hoverEnd"): void;
+    (e: "check"): void;
 }>();
 
 const popMenuRef = ref<HTMLElement | null>(null);
@@ -89,6 +90,32 @@ catch (e) {
     console.error('Error in PopMenu:', e);
 }
 
+const handleCheck = (e: { checked: boolean, index: number, multiCheck: boolean }) => {
+    const item = props.attribute.items[e.index];
+    if (item.checkable) {
+        if(!e.multiCheck){
+            let checkMessage = {selectedText: item.name, selectedIndex: e.index};
+            // 如果是单选，取消其他选项的选中状态
+            props.attribute.items.forEach((otherItem, index) => {
+                if (index !== e.index && !otherItem.multiCheck) {
+                    otherItem.checked = false;
+                }
+            });
+            item.checked = true;
+            emit("check", checkMessage);
+        }else{
+          item.checked = e.checked;
+          let checkMessage = [];
+          props.attribute.items.forEach((item, index) => {
+            if(item.checked){
+              checkMessage.push({selectedText: item.name, selectedIndex: index});
+            }
+          })
+          emit("check", checkMessage);
+        }
+    }
+
+};
 
 
 </script>
